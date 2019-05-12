@@ -11,10 +11,17 @@ import java.awt.Insets;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.Component;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Point;
 
 public class GameMenuFrame extends JFrame {
 
 	private JPanel contentPane;
+	private MainFrame fr;
+	static GameMenuFrame frame;
 
 	/**
 	 * Launch the application.
@@ -23,7 +30,7 @@ public class GameMenuFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameMenuFrame frame = new GameMenuFrame();
+					frame = new GameMenuFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,56 +47,73 @@ public class GameMenuFrame extends JFrame {
 		setBounds(100, 100, 480, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel p1 = new JPanel();
-		contentPane.add(p1, BorderLayout.NORTH);
+		p1.setPreferredSize(new Dimension(480, 20));
+		contentPane.add(p1);
 		
-		JButton btnbefore = new JButton("← 이전으로");
-		btnbefore.setMargin(new Insets(2, 10, 2, 10));
-		btnbefore.setPreferredSize(new Dimension(100, 30));
-		p1.add(btnbefore);
+		JButton btnBefore = new JButton("← 이전으로");
+		btnBefore.setMargin(new Insets(2, 10, 2, 10));
+		btnBefore.setPreferredSize(new Dimension(100, 15));
+		p1.add(btnBefore);
+		
+		
+		
+		btnBefore.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				fr.setVisible(true); //메인프레임 소환
+				
+				
+				
+			}
+		});
+		
+		JButton btncall = new JButton("호출하기");
+		btncall.setAlignmentY(0.0f);
+		btncall.setPreferredSize(new Dimension(100, 15));
+		p1.add(btncall);
 		
 		JPanel p2 = new JPanel();
-		contentPane.add(p2, BorderLayout.CENTER);
+		p2.setPreferredSize(new Dimension(460, 30));
+		contentPane.add(p2);
 		p2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		JLabel lblNewLabel = new JLabel("Playground");
+		p2.add(lblNewLabel);
+		
 		JPanel pn = new JPanel();
-		p2.add(pn);
+		contentPane.add(pn);
 		pn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JPanel panel = new JPanel();
-		pn.add(panel);
-		
-		JLabel lblNewLabel = new JLabel("Playground");
-		panel.add(lblNewLabel);
-		
-		JPanel panel_1 = new JPanel();
-		pn.add(panel_1);
-		
-		JButton btnNewButton = new JButton("복불복게임");
-		panel_1.add(btnNewButton);
-		btnNewButton.setPreferredSize(new Dimension(110, 200));
-		btnNewButton.setMargin(new Insets(5, 20, 5, 20));
-		
 		JButton btnNewButton_1 = new JButton("테이블대전");
+		pn.add(btnNewButton_1);
 		btnNewButton_1.setMargin(new Insets(5, 20, 5, 20));
-		panel_1.add(btnNewButton_1);
 		btnNewButton_1.setPreferredSize(new Dimension(110, 200));
 		
 		JButton btnNewButton_2 = new JButton("모두의행운");
+		pn.add(btnNewButton_2);
 		btnNewButton_2.setMargin(new Insets(5, 20, 5, 20));
-		panel_1.add(btnNewButton_2);
 		btnNewButton_2.setPreferredSize(new Dimension(110, 200));
 		
+		JButton btnNewButton = new JButton("복불복게임");
+		pn.add(btnNewButton);
+		btnNewButton.setPreferredSize(new Dimension(110, 200));
+		btnNewButton.setMargin(new Insets(5, 20, 5, 20));
+		
 		JPanel ps = new JPanel();
-		contentPane.add(ps, BorderLayout.SOUTH);
+		contentPane.add(ps);
 		ps.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnchoice = new JButton("선택완료");
 		btnchoice.setPreferredSize(new Dimension(640, 40));
 		ps.add(btnchoice);
+		
+		//frame.setVisible(true);
 	}
 
 }
